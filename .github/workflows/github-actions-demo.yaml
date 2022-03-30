@@ -34,7 +34,7 @@ jobs:
       - name: Make build folder
         run: mkdir -p ${{ github.workspace }}/build
       - name: Compile the code
-        run: cd ${{ github.workspace}}/build && cmake .. && make
+        run: cd ${{ github.workspace}}/build && cmake ${{ github.workspace}} && make
   run-binary:
     needs: make-binary
     runs-on: ubuntu-latest
