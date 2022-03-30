@@ -24,19 +24,19 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
-  make-binary:
-    needs:
-      - checkout-repo
-      - install-deps
-    runs-on: ubuntu-latest
-    steps:
-      - name: Make build folder
-      - run: mkdir -p ${{ github.workspace }}/build
-      - name: Compile the code
-      - run: cd ${{ github.workspace}}/build && cmake .. && make
-  run-binary:
-    needs: make-binary
-    runs-on: ubuntu-latest
-    steps:
-      - name: Did you do the thing?
-      - run: ${{ github.workspace }}/build/actions_test
+  # make-binary:
+  #   runs-on: ubuntu-latest
+  #   needs:
+  #     - checkout-repo
+  #     - install-deps
+  #   steps:
+  #     - name: Make build folder
+  #     - run: mkdir -p ${{ github.workspace }}/build
+  #     - name: Compile the code
+  #     - run: cd ${{ github.workspace}}/build && cmake .. && make
+  # run-binary:
+  #   needs: make-binary
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Did you do the thing?
+  #     - run: ${{ github.workspace }}/build/actions_test
