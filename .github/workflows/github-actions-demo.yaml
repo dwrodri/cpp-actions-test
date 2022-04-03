@@ -4,25 +4,14 @@ on:
     branches:
       - "main"
 jobs:
-  install-deps:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install CMake
-        run: sudo apt-get update && sudo apt-get install -y cmake
   make-binary:
     runs-on: ubuntu-latest
-    needs:
-      - install-deps
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Make build folder
         run: mkdir -p ${{ github.workspace }}/build
       - name: Compile the code
-        run: cd ${{ github.workspace}}/build && cmake ${{ github.workspace}} && make
-  run-binary:
-    needs: make-binary
-    runs-on: ubuntu-latest
-    steps:
-      - name: Did you do the thing?
-        run: ${{ github.workspace }}/build/actions_test
+        run: cd ${{github.workspace}}/build && cmake ${{github.workspace}} && make
+      - name: Run the code
+        run: ${{github.workspace}}/build/actions_test
