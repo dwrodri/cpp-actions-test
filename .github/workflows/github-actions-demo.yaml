@@ -9,6 +9,8 @@ jobs:
   upload-release:
     name: Upload Release Asset
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -25,6 +27,7 @@ jobs:
         id: create_release
         uses: actions/create-release@v1
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           draft: false
